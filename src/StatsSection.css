@@ -1,0 +1,12 @@
+/* StatsSection.css */
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  text-align: center;
+  padding: 40px 0;
+}
+.stats h2 {
+  font-size: 28px;
+  font-weight: bold;
+}

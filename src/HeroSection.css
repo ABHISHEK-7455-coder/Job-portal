@@ -1,0 +1,17 @@
+/* HeroSection.css */
+.hero {
+  background-image: url('/your-image.jpg');
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  padding: 100px 20px;
+  /* color: white; */
+}
+.hero-title {
+  font-size: 36px;
+  font-weight: bold;
+}
+.hero-subtitle {
+  max-width: 600px;
+  margin: 0 auto;
+}

@@ -1,0 +1,37 @@
+/* JobCards.css */
+.job-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  max-width: 1100px;
+  margin: 40px auto;
+}
+.card {
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: left;
+}
+.card .type {
+  font-size: 12px;
+  color: gray;
+}
+.card button {
+  margin-top: 10px;
+  background: none;
+  color: #007bff;
+  border: none;
+  cursor: pointer;
+}
+.more-jobs {
+  grid-column: span 4;
+  text-align: center;
+  margin-top: 20px;
+}
+.more-jobs button {
+  background: #007bff;
+  color: white;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 4px;
+}
