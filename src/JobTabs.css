@@ -11,6 +11,6 @@
   cursor: pointer;
 }
 .job-tabs .active {
-  background: #007bff;
+  background: orange;
   color: white;
 }

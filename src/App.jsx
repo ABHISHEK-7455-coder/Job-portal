@@ -6,6 +6,8 @@ import JobTabs from "./JobTabs";
 import JobCards from "./JobCards";
 import CategorySection from "./CategorySection";
 import Header from "./Header";
+import Footer from "./Footer";
+import Dashboard from "./Dashboard";
 
 const App = () => {
   return (
@@ -17,6 +19,9 @@ const App = () => {
       <JobTabs />
       <JobCards />
       <CategorySection />
+      <Dashboard />
+      <Footer />
+      
     </div>
   );
 };
