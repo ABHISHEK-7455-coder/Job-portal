@@ -12,7 +12,7 @@ const CategorySection = () => {
   return (
     <div className="category-section">
       <h2>Browse By Category</h2>
-      <p>More than 7 million JobHuntr turn to our website each month.</p>
+      <p>More than 7 million Job Hunters turn to our website each month.</p>
       <div className="categories">
         {categories.map((cat, i) => (
           <div key={i} className="category-card">
