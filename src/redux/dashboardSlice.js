@@ -1,54 +1,49 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+// src/redux/dashboardSlice.js
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-// THUNK
 export const fetchDashboardData = createAsyncThunk(
-    "dashboard/fetchDashboardData",
-    async () => {
-        const res = await fetch("/api/dashboard");
-        const data = await res.json();
-        return data;
-    }
+  'dashboard/fetchData',
+  async () => {
+    const res = await fetch('/api/dashboard');
+    return await res.json();
+  }
 );
 
-// SLICE
 const dashboardSlice = createSlice({
-    name: "dashboard",
-    initialState: {
-        applications: [],
-        savedJobs: [],
-        messages: [],
-        status: "idle",
-        error: null,
+  name: 'dashboard',
+  initialState: {
+    applications: [],
+    savedJobs: [],
+    messages: [],
+    interviews: [],
+    recentActivity: [],
+    status: 'idle',
+    error: null
+  },
+  reducers: {
+    markMessageRead: (state, action) => {
+      const msg = state.messages.find(m => m.id === action.payload);
+      if (msg) msg.read = true;
     },
-    reducers: {
-        applyToJob: (state, action) => {
-            const jobId = action.payload;
-            state.savedJobs = state.savedJobs.filter((job) => job.id !== jobId);
-            state.applications.push({ id: Date.now(), status: "sent" });
-        },
-        markMessageRead: (state, action) => {
-            const id = action.payload;
-            const msg = state.messages.find((m) => m.id === id);
-            if (msg) msg.read = true;
-        },
-    },
-    extraReducers: (builder) => {
-        builder
-            .addCase(fetchDashboardData.pending, (state) => {
-                state.status = "loading";
-            })
-            .addCase(fetchDashboardData.fulfilled, (state, action) => {
-                state.status = "succeeded";
-                state.applications = action.payload.applications;
-                state.savedJobs = action.payload.savedJobs;
-                state.messages = action.payload.messages;
-            })
-            .addCase(fetchDashboardData.rejected, (state, action) => {
-                state.status = "failed";
-                state.error = action.error.message;
-            });
-    },
+    applyToJob: (state, action) => {
+      state.savedJobs = state.savedJobs.filter(job => job.id !== action.payload);
+      state.applications.push({ id: Date.now(), status: 'sent' });
+      state.recentActivity.unshift({ id: Date.now(), action: 'Applied to a job' });
+    }
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchDashboardData.fulfilled, (state, action) => {
+        const data = action.payload;
+        state.applications = data.applications;
+        state.savedJobs = data.savedJobs;
+        state.messages = data.messages;
+        state.interviews = data.interviews;
+        state.recentActivity = data.recentActivity;
+        state.status = 'succeeded';
+      });
+  }
 });
 
-export const { applyToJob, markMessageRead } = dashboardSlice.actions;
+export const { markMessageRead, applyToJob } = dashboardSlice.actions;
 export default dashboardSlice.reducer;

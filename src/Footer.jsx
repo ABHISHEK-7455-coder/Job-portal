@@ -51,7 +51,7 @@ function Footer() {
           <span>Download the App</span>
           
            <a href="#" class="fa fa-android"></a>
-          <img src="https://cdn-icons-png.flaticon.com/512/888/888841.png" alt="ios" />
+          
         </div>
         <div className="social-icons">
          <a href="#" class="fa fa-linkedin"></a>

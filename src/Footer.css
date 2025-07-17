@@ -96,6 +96,9 @@
   margin-top: 10px;
   color: #777;
 }
+.footer-middle a {
+  color: orange;
+}
 
 .fa:hover {
             opacity: 0.9;
@@ -103,7 +106,7 @@
 
         .fa-linkedin {
             background: #007bb5;
-            color: white;
+            color: orange;
         }
 
         .fa-pinterest {
