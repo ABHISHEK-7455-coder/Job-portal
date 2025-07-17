@@ -6,7 +6,7 @@ const HeroSection = () => {
     <section className="hero">
       <h1 className="hero-title">Find Your Career. You Deserve it.</h1>
       <p className="hero-subtitle">
-        At Vero Eos Et Accusamus Et Iusto Odio Dignissimos Ducimus Qui Blanditiis Praesentium.
+        "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born..."
       </p>
     </section>
   );

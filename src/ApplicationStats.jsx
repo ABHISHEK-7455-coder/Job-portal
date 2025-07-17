@@ -1,23 +1,25 @@
 import React from "react";
-import "./ApplicationStats.css";
+import "./ApplicationStats.css"
 
-const ApplicationStats = () => {
-  return (
-    <div className="application-stats">
-      <div className="stat-card">
-        <h3>12</h3>
-        <p>Applications Sent</p>
-      </div>
-      <div className="stat-card">
-        <h3>4</h3>
-        <p>Interviews Scheduled</p>
-      </div>
-      <div className="stat-card">
-        <h3>2</h3>
-        <p>Offers Received</p>
-      </div>
-    </div>
-  );
+const ApplicationStats = ({ applications }) => {
+    const sent = applications.filter((a) => a.status === "sent").length;
+    const interviews = applications.filter((a) => a.status === "interview").length;
+    const offers = applications.filter((a) => a.status === "offer").length;
+
+    return (
+        <div style={{ display: "flex", gap: "20px", marginBottom: "30px" }}>
+            <StatBox label="Applications Sent" count={sent} />
+            <StatBox label="Interviews Scheduled" count={interviews} />
+            <StatBox label="Offers Received" count={offers} />
+        </div>
+    );
 };
+
+const StatBox = ({ label, count }) => (
+    <div className="stat-card">
+        <h3>{count}</h3>
+        <p style={{ margin: 0 }}>{label}</p>
+    </div>
+);
 
 export default ApplicationStats;
