@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchDashboardData, applyToJob, markMessageRead } from './redux/dashboardSlice';
 import { fetchProfile } from './redux/profileSlice';
 
-// import WelcomeSection from './WelcomeSection';
+import WelcomeSection from './WelcomeSection';
 import ApplicationStats from './ApplicationOverview';
 import SavedJobs from './SavedJobs';
 import UpcomingInterviews from './UpcomingInterviews';
@@ -24,7 +24,7 @@ const Dashboard = () => {
   return (
     <div style={{ padding: '20px', maxWidth: '1200px', margin: 'auto' }}>
         <h1>User Dashboard</h1>
-      {/* <WelcomeSection profile={profile} /> */}
+      <WelcomeSection profile={profile} />
       <ApplicationStats applications={applications} />
       <SavedJobs savedJobs={savedJobs} onApply={(id) => dispatch(applyToJob(id))} />
       <UpcomingInterviews interviews={interviews} />

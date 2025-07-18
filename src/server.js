@@ -31,22 +31,22 @@ export function makeServer() {
                         { id: 2, from: "System", text: "You saved a new job", read: true },
                     ],
                     interviews: [
-            { id: 1, company: 'Google', title: 'Frontend Dev', date: '2025-07-20', time: '10:00 AM' }
-          ],
-          recentActivity: [
-            { id: 1, action: 'Applied to React Developer at Amazon' },
-            { id: 2, action: 'Viewed job: UI Designer at Netflix' }
-          ]
+                        { id: 1, company: 'Google', title: 'Frontend Dev', date: '2025-07-20', time: '10:00 AM' }
+                    ],
+                    recentActivity: [
+                        { id: 1, action: 'Applied to React Developer at Amazon' },
+                        { id: 2, action: 'Viewed job: UI Designer at Netflix' }
+                    ]
                 };
             });
-         this.get('/profile', () => {
-        return {
-          name: 'Abhishek',
-          email: 'abhi@example.com',
-          resume: 'Resume uploaded',
-          skills: ['React', 'Redux', 'JavaScript']
-        };
-      });
-    }
-  });
+            this.get('/profile', () => {
+                return {
+                    name: 'Abhishek',
+                    email: 'abhi@example.com',
+                    resume: 'Resume uploaded',
+                    skills: ['React', 'Redux', 'JavaScript']
+                };
+            });
+        }
+    });
 }
