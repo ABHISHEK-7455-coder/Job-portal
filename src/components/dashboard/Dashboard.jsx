@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchDashboardData, applyToJob, markMessageRead } from './redux/dashboardSlice';
-import { fetchProfile } from './redux/profileSlice';
+import { fetchDashboardData, applyToJob, markMessageRead } from '../../redux/dashboardSlice';
+import { fetchProfile } from '../../redux/profileSlice';
 
 import WelcomeSection from './WelcomeSection';
 import ApplicationStats from './ApplicationOverview';
 import SavedJobs from './SavedJobs';
-import UpcomingInterviews from './UpcomingInterviews';
+import UpcomingInterviews from '../../UpcomingInterviews';
 import Messages from './Messages';
 import ResumeProfile from './ResumeProfile';
 import RecentActivity from './RecentActivity';

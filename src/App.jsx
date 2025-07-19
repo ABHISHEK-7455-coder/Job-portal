@@ -1,29 +1,128 @@
-import React from "react";
-import HeroSection from "./HeroSection";
-import SearchBar from "./SearchBar";
-import StatsSection from "./StatsSection";
-import JobTabs from "./JobTabs";
-import JobCards from "./JobCards";
-import CategorySection from "./CategorySection";
-import Header from "./Header";
-import Footer from "./Footer";
-import Dashboard from "./Dashboard";
+// import React from "react";
+// import Header from "./components/Header";
+// import Hero from "./components/Hero";
+// import Main from "./components/Main";
+// import Footer from "./components/Footer";
 
-const App = () => {
+// import { makeServer } from "./services/mirage/server";
+// import JobList from "./components/JobList";
+
+
+// // Start MirageJS server
+// if (process.env.NODE_ENV === 'development') {
+//   makeServer();
+// }
+// function App() {
+//   return (
+//     <div className="root">
+//       <Header />
+//       <Hero />
+//       <Main />
+//       <JobList/>
+//       <Footer />
+
+//     </div>
+//   );
+// }
+
+// export default App;
+// src/App.jsx
+// import React, { useEffect, useState } from "react";
+// import Header from "./components/Header";
+// import Hero from "./components/Hero";
+// import Main from "./components/Main";
+// import Footer from "./components/Footer";
+// import JobList from "./components/JobList";
+// import { supabase } from "./supabaseClient";
+// import { makeServer } from "./services/mirage/server";
+
+// if (process.env.NODE_ENV === "development") {
+//   makeServer();
+// }
+
+// function App() {
+//   const [user, setUser] = useState(null);
+
+//   useEffect(() => {
+//     supabase.auth.getSession().then(({ data: { session } }) => {
+//       setUser(session?.user || null);
+//     });
+
+//     const {
+//       data: { subscription },
+//     } = supabase.auth.onAuthStateChange((_event, session) => {
+//       setUser(session?.user || null);
+//     });
+
+//     return () => {
+//       subscription.unsubscribe();
+//     };
+//   }, []);
+
+//   return (
+//     <div className="root">
+//       <Header user={user} />
+//       <Hero />
+//       <Main />
+//       <JobList />
+//       <Footer />
+//     </div>
+//   );
+// }
+
+// export default App;
+// src/App.jsx
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Import Router
+import Header from "./components/Header";
+import Hero from "./components/Hero";
+import Footer from "./components/Footer";
+import JobList from "./components/Joblist"; // Import JobList
+import Dashboard from "./components/Dashboard"; // Import your Dashboard component
+import AuthForm from "./components/AuthForm"; // Import AuthForm
+import { supabase } from "./supabaseClient";
+import { makeServer } from "./services/server";
+import Main from "./components/main";
+
+if (process.env.NODE_ENV === "development") {
+  makeServer();
+}
+
+function App() {
+  const [user, setUser ] = useState(null);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser (session?.user || null);
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser (session?.user || null);
+    });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
+
   return (
-    <div>
-      <Header />
-      <HeroSection />
-      <SearchBar />
-      <StatsSection />
-      <JobTabs />
-      <JobCards />
-      <CategorySection />
-      <Dashboard />
-      <Footer />
-      
-    </div>
+    <Router> {/* Wrap the entire app in Router */}
+      <div className="root">
+        <Header user={user} />
+        <Routes>
+          <Route path="/" element={<><Hero /><Main /><Footer /></>} />
+          <Route path="/jobs" element={<><JobList /><Footer /></>} />
+          <Route path="/auth" element={<AuthForm onAuthSuccess={() => setUser (true)} />} />
+            
+          <Route path="/dashboard" element={<><Dashboard /><Footer /></>} />
+          <Route path="/footer" element={<><Footer /></>} />
+        </Routes>
+        
+      </div>
+    </Router>
   );
-};
+}
 
 export default App;

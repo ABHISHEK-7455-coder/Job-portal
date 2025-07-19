@@ -1,5 +1,5 @@
 .footer {
-  background-color: #fff;
+  /* background-color: #fff; */
   font-family: Arial, sans-serif;
   border-top: 1px solid #ddd;
   padding: 40px 20px 20px;
@@ -17,7 +17,7 @@
 }
 
 .footer-logo {
-  color: orange;
+  color: #10131d;
   font-size: 24px;
   font-weight: bold;
 }
@@ -96,37 +96,3 @@
   margin-top: 10px;
   color: #777;
 }
-.footer-middle a {
-  color: orange;
-}
-
-.fa:hover {
-            opacity: 0.9;
-        }
-
-        .fa-linkedin {
-            background: #007bb5;
-            color: orange;
-        }
-
-        .fa-pinterest {
-            background: #cb2027;
-            color: white;
-        }
-
-        .fa-reddit {
-            background: #ff5700;
-            color: white;
-        }
-
-        .fa {
-            padding: 20px;
-            font-size: 40px;
-            width: 30px;
-            text-decoration: none;
-            /* margin: 5px 80px; */
-            height:30px ;
-            border-radius: 50%;
-            background-color: transparent;
-            color: black;
-        }

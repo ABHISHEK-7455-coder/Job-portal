@@ -10,3 +10,17 @@ const WelcomeSection = ({ profile }) => {
 };
 
 export default WelcomeSection;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
