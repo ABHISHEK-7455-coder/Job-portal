@@ -1,7 +1,7 @@
 // components/Dashboard.jsx
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchDashboardData, applyToJob, markMessageRead } from '../../redux/dashboardSlice';
+import { fetchDashboardData, markMessageRead } from '../../redux/dashboardSlice';
 import { fetchProfile } from '../../redux/profileSlice';
 
 import WelcomeSection from './WelcomeSection';
@@ -22,11 +22,11 @@ const Dashboard = () => {
     recentActivity = [],
   } = useSelector((state) => state.dashboard || {});
 
-  const profile = useSelector((state) => state.profile || {});
+  const profile = useSelector((state) => state.profile);
 
   useEffect(() => {
     dispatch(fetchDashboardData());
-    dispatch(fetchProfile());
+    dispatch(fetchProfile()); // Supabase user info
   }, [dispatch]);
 
   return (
@@ -34,7 +34,7 @@ const Dashboard = () => {
       <h1>User Dashboard</h1>
       <WelcomeSection profile={profile} />
       <ApplicationStats applications={applications} />
-      <SavedJobs /> {/* No props needed now */}
+      <SavedJobs />
       <UpcomingInterviews interviews={interviews} />
       <Messages messages={messages} onRead={(id) => dispatch(markMessageRead(id))} />
       <ResumeProfile profile={profile} />

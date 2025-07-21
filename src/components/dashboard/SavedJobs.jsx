@@ -9,8 +9,9 @@ const SavedJobs = () => {
   const savedJobs = useSelector((state) => state.savedJobs.savedJobs);
 
   return (
-    <div style={{ marginBottom: "30px" }}>
-      <h3>Saved Jobs</h3>
+    <div className='saved-jobs'>
+      <h2>Saved Jobs</h2>
+      <div>
       {savedJobs.length === 0 ? (
         <p>No saved jobs available.</p>
       ) : (
@@ -26,6 +27,7 @@ const SavedJobs = () => {
           </div>
         ))
       )}
+      </div>
     </div>
   );
 };

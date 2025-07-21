@@ -516,21 +516,36 @@ h1 {
   font-size: 13px;
   color: #888;
 } */
-/* 
+
 .apply-btn {
   padding: 8px 14px;
-  background-color: #4caf50;
+  background-color: rgba(150, 132, 192);
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   font-weight: bold;
-} */
+  margin: 0px 5px;
+}
 
 .apply-btn:hover {
   background-color: #388e3c;
 }
 
+.save-btn {
+  padding: 8px 14px;
+  background-color: rgba(150, 132, 192);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 0px 5px;
+}
+
+.save-btn:hover {
+  background-color: #388e3c;
+}
 .no-jobs {
   padding: 20px;
   background-color: #fff3cd;

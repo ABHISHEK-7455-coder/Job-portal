@@ -626,6 +626,15 @@ export function makeServer() {
     routes() {
       this.namespace = 'api';
 
+      this.get('/profile', () => {
+        return {
+          name: 'Abhishek Deshwal',
+          email: 'abhishek@example.com',
+          resume: 'https://example.com/resume.pdf',
+          skills: ['React', 'Java Script', 'Redux', 'HTML', 'CSS']
+        };
+      });
+
       // Get all jobs
       this.get('/jobs', () => {
         return {

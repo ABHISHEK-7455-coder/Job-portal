@@ -1,8 +1,10 @@
 /* SavedJobs.css */
 .saved-jobs {
+  display: flex;
+  flex-wrap: wrap;
   margin-bottom: 40px;
 }
-.job-card {
+/* .job-card {
   display: flex;
   justify-content: space-between;
   padding: 15px 20px;
@@ -10,15 +12,15 @@
   background: #fff;
   border: 1px solid #eee;
   border-radius: 6px;
-}
+} */
 p {
   margin: 0;
 }
-.apply-btn {
-  background: orange;
+/* .apply-btn {
+  background: #4caf50;
   color: white;
   border: none;
   padding: 0px 46px;
   border-radius: 8px;
   cursor: pointer;
-}
+} */

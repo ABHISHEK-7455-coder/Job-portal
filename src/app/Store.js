@@ -14,20 +14,24 @@ import jobReducer, {
   setSelectedType,
   setSelectedSalary,
   clearFilters,
-} from '../redux/jobSlice'; // ✅ Adjust path if needed
+} from '../redux/jobSlice'; // ✅ Assuming jobSlice is in same directory
 
 import savedJobsReducer, {
   saveJob,
   unsaveJob,
-} from '../redux/savedJobsSlice'; // ✅ Make sure this path is correct
+} from '../redux/savedJobsSlice'; // ✅ Assuming savedJobsSlice is in same directory
+
+import profileReducer from '../redux/profileSlice'; // ✅ Assuming profileSlice is in same directory
 
 const store = configureStore({
   reducer: {
+    profile: profileReducer,
     jobs: jobReducer,
     savedJobs: savedJobsReducer,
   },
 });
 
+// Exporting store and actions
 export {
   store,
   // jobSlice actions
