@@ -1,7 +1,7 @@
 // components/SavedJobs.jsx
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { applyToJob } from 'src/redux/dashboardSlice.js';
+import { applyToJob } from '../../redux/dashboardSlice.js';
 import './SavedJobs.css';
 
 const SavedJobs = () => {
