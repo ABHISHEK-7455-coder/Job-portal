@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/Main.css";
+import "./Main.css";
 import Categories3DRing from "./rotate";
 import JobCards from "./JobCard";
 

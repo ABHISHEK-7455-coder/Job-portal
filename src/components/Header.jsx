@@ -109,7 +109,7 @@
 //   );
 // }
 import { useState } from "react";
-import "../styles/Header.css";
+import "./Header.css";
 import { supabase } from "../supabaseClient";
 import { useNavigate } from "react-router-dom";
 

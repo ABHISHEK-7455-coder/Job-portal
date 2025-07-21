@@ -50,16 +50,16 @@ function Footer() {
         <div className="app-links">
           <span>Download the App</span>
           
-           <a href="#" class="fa fa-android"></a>
+           <a href="#" className="fa fa-android"></a>
           
         </div>
         <div className="social-icons">
-         <a href="#" class="fa fa-linkedin"></a>
-        <a href="#" class="fa fa-pinterest"></a>
-        <a href="#" class="fa fa-reddit"></a>
-         <a href="#" class="fa fa-youtube"></a>
-          <a href="#" class="fa fa-twitter"></a>
-           <a href="#" class="fa fa-instagram"></a>
+         <a href="#" className="fa fa-linkedin"></a>
+        <a href="#" className="fa fa-pinterest"></a>
+        <a href="#" className="fa fa-reddit"></a>
+         <a href="#" className="fa fa-youtube"></a>
+          <a href="#" className="fa fa-twitter"></a>
+           <a href="#" className="fa fa-instagram"></a>
           
         </div>
         <div className="country-select">

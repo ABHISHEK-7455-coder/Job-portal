@@ -76,13 +76,13 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Import Router
 import Header from "./components/Header";
 import Hero from "./components/Hero";
+import Main from "./components/Main";
 import Footer from "./components/Footer";
-import JobList from "./components/Joblist";
-import Dashboard from "./components/Dashboard"; 
-import AuthForm from "./components/AuthForm";
-import { supabase } from "./supabaseClient";
-import { makeServer } from "./services/server";
-import Main from "./components/main";
+import JobList from "./components/JobList"; // Import JobList
+import Dashboard from "./components/dashboard/Dashboard"; // Import your Dashboard component
+import AuthForm from "./components/AuthForm"; // Import AuthForm
+import { supabase } from "./SupabaseClient";
+import { makeServer } from "./services/mirage/server";
 
 if (process.env.NODE_ENV === "development") {
   makeServer();

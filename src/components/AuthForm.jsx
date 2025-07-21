@@ -122,7 +122,7 @@
 // src/components/AuthForm.jsx
 import { useState } from "react";
 import { supabase } from "../supabaseClient";
-import "../styles//AuthForm.css"; // Import the CSS file
+import "./AuthForm.css"; // Import the CSS file
 
 export default function AuthForm({ onAuthSuccess }) {
   const [email, setEmail] = useState("");
