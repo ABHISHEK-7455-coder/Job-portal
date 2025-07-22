@@ -626,6 +626,14 @@ export function makeServer() {
     routes() {
       this.namespace = 'api';
 
+      this.post('/upload-resume', (schema, request) => {
+  const formData = JSON.parse(request.requestBody); // since real file can't be handled
+  const fakeUrl = `https://fakecdn.com/uploads/${formData.filename}`;
+  
+  return { message: 'Mock upload success', filePath: fakeUrl };
+});
+
+
       this.get('/profile', () => {
         return {
           name: 'Abhishek Deshwal',

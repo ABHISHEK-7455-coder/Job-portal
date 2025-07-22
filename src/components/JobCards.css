@@ -2,9 +2,9 @@
 .job-cards {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 20px;
+  gap: 50px;
   max-width: 1100px;
-  margin: 40px auto;
+  margin: 10px auto;
 }
 .card {
   background-color: #fffcfc;

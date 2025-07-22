@@ -7,10 +7,10 @@ import { fetchProfile } from '../../redux/profileSlice';
 import WelcomeSection from './WelcomeSection';
 import ApplicationStats from './ApplicationStats';
 import SavedJobs from './SavedJobs';
-import Messages from './Messages';
+// import Messages from './Messages';
 import ResumeProfile from './ResumeProfile';
-import RecentActivity from './RecentActivity';
-import UpcomingInterviews from './UpcomingInterviews';
+// import RecentActivity from './RecentActivity';
+// import UpcomingInterviews from './UpcomingInterviews';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -35,10 +35,10 @@ const Dashboard = () => {
       <WelcomeSection profile={profile} />
       <ApplicationStats applications={applications} />
       <SavedJobs />
-      <UpcomingInterviews interviews={interviews} />
-      <Messages messages={messages} onRead={(id) => dispatch(markMessageRead(id))} />
+      {/* <UpcomingInterviews interviews={interviews} /> */}
+      {/* <Messages messages={messages} onRead={(id) => dispatch(markMessageRead(id))} /> */}
       <ResumeProfile profile={profile} />
-      <RecentActivity activity={recentActivity} />
+      {/* <RecentActivity activity={recentActivity} /> */}
     </div>
   );
 };
