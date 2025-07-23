@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./ResumeProfile.css"
 
 const ResumeProfile = ({ profile }) => {
@@ -6,8 +6,15 @@ const ResumeProfile = ({ profile }) => {
   const [uploadMessage, setUploadMessage] = useState("");
   const [uploadedUrl, setUploadedUrl] = useState(profile.resume || "");
 
-  const [skills, setSkills] = useState(profile.skills || []);
+  const [skills, setSkills] = useState(() => {
+  const saved = localStorage.getItem("userSkills");
+  return saved ? JSON.parse(saved) : profile.skills || [];
+});
   const [newSkill, setNewSkill] = useState("");
+
+  useEffect(() => {
+  localStorage.setItem("userSkills", JSON.stringify(skills));
+}, [skills]);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
