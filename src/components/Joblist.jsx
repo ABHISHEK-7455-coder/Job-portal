@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   setJobs,
@@ -21,6 +21,13 @@ import './Joblist.css';
 const JobList = () => {
   const dispatch = useDispatch();
   const { jobs, categories, companies, loading, error, filters } = useSelector((state) => state.jobs);
+
+  const [toast, setToast] = useState(null);
+
+  const showToast = (message) => {
+    setToast(message);
+    setTimeout(() => setToast(null), 3000); // hide after 3s
+  };
 
   useEffect(() => {
     fetchInitialData();
@@ -89,7 +96,8 @@ const JobList = () => {
   return (
     <div className="job-list-container">
       <div className="job-list-layout">
-        {/* ✅ FILTER SIDEBAR RESTORED */}
+
+          {/* ✅ FILTER SIDEBAR RESTORED */}
         <div className="filters-sidebar">
           <div className="filters-section">
             <div className="filter-group">
@@ -280,7 +288,13 @@ const JobList = () => {
                         <a href={job.applyUrl} target="_blank" rel="noopener noreferrer">
                           <button className="apply-btn">Apply Now</button>
                         </a>
-                        <button onClick={() => dispatch(saveJob(job))} className="save-btn">
+                        <button
+                          onClick={() => {
+                            dispatch(saveJob(job));
+                            showToast( "Saved Successfully!");
+                          }}
+                          className="save-btn"
+                        >
                           Save Job
                         </button>
                       </div>
@@ -292,6 +306,9 @@ const JobList = () => {
           </div>
         </div>
       </div>
+
+      {/* ✅ Toast popup */}
+      {toast && <div className="toast-popup">{toast}</div>}
     </div>
   );
 };

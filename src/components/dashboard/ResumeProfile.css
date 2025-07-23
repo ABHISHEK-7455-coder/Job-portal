@@ -1,0 +1,32 @@
+input[type="file"] {
+    border: none;
+}
+
+.upload-btn {
+    border: none;
+    border-radius: 15px;
+    padding: 8px 20px;
+}
+
+.skills-input {
+    border: none;
+    border-radius: 20px;
+    padding: 8px 25px;
+    margin-left: 15px;
+}
+
+.add-btn {
+    border: none;
+    border-radius: 20px;
+    padding: 8px 20px;
+    margin-left: 10px;
+}
+
+li {
+    margin-top: -10px;
+}
+
+.delete {
+    margin-top: -15px;
+    font-size: 20px;
+}

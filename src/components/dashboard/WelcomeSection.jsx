@@ -7,7 +7,7 @@ const WelcomeSection = ({ profile }) => {
   return (
     <section style={{ marginBottom: '20px' }}>
       <h2>Welcome{ name ? `, ${name}` : '' }!</h2>
-      {email && <p>Email: {email}</p>}
+      {email && <p style={{backgroundColor: "white", width: "25%", padding:"8px 20px"}}><strong>Email:</strong> {email}</p>}
     </section>
   );
 };

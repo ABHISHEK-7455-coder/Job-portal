@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+import "./ResumeProfile.css"
 
 const ResumeProfile = ({ profile }) => {
   const [resumeFile, setResumeFile] = useState(null);
   const [uploadMessage, setUploadMessage] = useState("");
   const [uploadedUrl, setUploadedUrl] = useState(profile.resume || "");
+
+  const [skills, setSkills] = useState(profile.skills || []);
+  const [newSkill, setNewSkill] = useState("");
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -40,6 +44,17 @@ const ResumeProfile = ({ profile }) => {
     }
   };
 
+  const handleAddSkill = () => {
+    if (newSkill.trim() !== "" && !skills.includes(newSkill.trim())) {
+      setSkills([...skills, newSkill.trim()]);
+      setNewSkill("");
+    }
+  };
+
+  const handleRemoveSkill = (skillToRemove) => {
+    setSkills(skills.filter((skill) => skill !== skillToRemove));
+  };
+
   return (
     <div style={{ marginBottom: "30px" }}>
       <h3>Resume & Profile</h3>
@@ -54,16 +69,47 @@ const ResumeProfile = ({ profile }) => {
       )}
 
       <div style={{ marginTop: "10px" }}>
-        <input type="file" accept=".pdf,.doc,.docx" onChange={handleFileChange} />
-        <button onClick={handleMockUpload} style={{ marginLeft: "10px" }}>
+        <input className="resume-input" type="file" accept=".pdf,.doc,.docx" onChange={handleFileChange} />
+        <button onClick={handleMockUpload} className="upload-btn">
           Upload Resume
         </button>
         {uploadMessage && <p style={{ color: "green" }}>{uploadMessage}</p>}
       </div>
 
-      <p>
-        <strong>Skills:</strong> {profile.skills?.join(", ") || "N/A"}
-      </p>
+      <div style={{ marginTop: "20px" }}>
+        <strong>Skills:</strong>
+
+        <input
+        className="skills-input"
+          type="text"
+          placeholder="Add new skill"
+          value={newSkill}
+          onChange={(e) => setNewSkill(e.target.value)}
+        />
+        <button onClick={handleAddSkill} className="add-btn">
+          Add Skill
+        </button>
+
+        <ul>
+          {skills.map((skill, index) => (
+            <li key={index}>
+              {skill}{" "}
+              <button
+                onClick={() => handleRemoveSkill(skill)}
+                style={{
+                  marginLeft: "8px",
+                  color: "red",
+                  border: "none",
+                  cursor: "pointer",
+                  background: "none"
+                }}
+              >
+                <a href="#" className=" delete fa fa-trash"></a>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

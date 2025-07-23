@@ -13,8 +13,8 @@
   border: 1px solid #eee;
   border-radius: 6px;
 } */
-p {
-  margin: 0;
+.job-cards p {
+  margin-top: 50px;
 }
 /* .apply-btn {
   background: #4caf50;

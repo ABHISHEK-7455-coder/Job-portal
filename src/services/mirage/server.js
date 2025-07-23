@@ -642,6 +642,30 @@ export function makeServer() {
           skills: ['React', 'Java Script', 'Redux', 'HTML', 'CSS']
         };
       });
+      
+       this.get("/applications", () => {
+        return {
+          applications: [
+            { id: 1, status: "sent" },
+            { id: 2, status: "sent" },
+            { id: 3, status: "sent" },
+            { id: 4, status: "interview" },
+            { id: 5, status: "interview" },
+            { id: 6, status: "offer" },
+            { id: 7, status: "sent" },
+            { id: 8, status: "interview" },
+            { id: 9, status: "offer" },
+            { id: 10, status: "sent" },
+            { id: 11, status: "sent" },
+            { id: 12, status: "offer" },
+            { id: 13, status: "sent" },
+            { id: 14, status: "interview" },
+            { id: 15, status: "sent" },
+            { id: 16, status: "sent" },
+            { id: 19, status: "sent" },
+          ],
+        };
+      });
 
       // Get all jobs
       this.get('/jobs', () => {
