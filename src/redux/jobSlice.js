@@ -1,4 +1,20 @@
+// ✅ jobSlice.js (with localStorage for applied jobs)
 import { createSlice } from '@reduxjs/toolkit';
+
+const getAppliedFromStorage = () => {
+  try {
+    const stored = localStorage.getItem('appliedJobIds');
+    return stored ? JSON.parse(stored) : [];
+  } catch {
+    return [];
+  }
+};
+
+const saveAppliedToStorage = (appliedJobIds) => {
+  try {
+    localStorage.setItem('appliedJobIds', JSON.stringify(appliedJobIds));
+  } catch {}
+};
 
 const initialState = {
   jobs: [],
@@ -6,6 +22,7 @@ const initialState = {
   companies: [],
   loading: false,
   error: null,
+  appliedJobIds: getAppliedFromStorage(), // ✅ Load from localStorage
   filters: {
     selectedCategory: null,
     selectedCompany: null,
@@ -21,7 +38,6 @@ const jobSlice = createSlice({
   name: 'jobs',
   initialState,
   reducers: {
-    // Job data management
     setJobs(state, action) {
       state.jobs = action.payload;
       state.loading = false;
@@ -40,8 +56,13 @@ const jobSlice = createSlice({
       state.error = action.payload;
       state.loading = false;
     },
-
-    // Filters
+    applyToJob(state, action) {
+      const jobId = action.payload;
+      if (!state.appliedJobIds.includes(jobId)) {
+        state.appliedJobIds.push(jobId);
+        saveAppliedToStorage(state.appliedJobIds); // ✅ Save to localStorage
+      }
+    },
     setSelectedCategory(state, action) {
       state.filters.selectedCategory = action.payload;
     },
@@ -63,8 +84,6 @@ const jobSlice = createSlice({
     setSelectedSalary(state, action) {
       state.filters.selectedSalary = action.payload;
     },
-
-    // Reset all filters
     clearFilters(state) {
       state.filters = {
         selectedCategory: null,
@@ -79,7 +98,6 @@ const jobSlice = createSlice({
   },
 });
 
-// Export actions and reducer
 export const {
   setJobs,
   setCategories,
@@ -94,6 +112,7 @@ export const {
   setSelectedType,
   setSelectedSalary,
   clearFilters,
+  applyToJob,
 } = jobSlice.actions;
 
 export default jobSlice.reducer;

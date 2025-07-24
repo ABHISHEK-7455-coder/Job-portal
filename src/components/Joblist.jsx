@@ -1,3 +1,4 @@
+// ✅ JobList.jsx (Apply Now → Applied + localStorage)
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -14,19 +15,19 @@ import {
   setSelectedType,
   setSelectedSalary,
   clearFilters,
+  applyToJob,
 } from '../redux/jobSlice';
 import { saveJob } from '../redux/savedJobsSlice';
 import './Joblist.css';
 
 const JobList = () => {
   const dispatch = useDispatch();
-  const { jobs, categories, companies, loading, error, filters } = useSelector((state) => state.jobs);
+  const { jobs, categories, companies, loading, error, filters, appliedJobIds } = useSelector((state) => state.jobs);
 
   const [toast, setToast] = useState(null);
-
   const showToast = (message) => {
     setToast(message);
-    setTimeout(() => setToast(null), 3000); // hide after 3s
+    setTimeout(() => setToast(null), 3000);
   };
 
   useEffect(() => {
@@ -81,7 +82,6 @@ const JobList = () => {
         job.description.toLowerCase().includes(query)
       );
     }
-
     return true;
   });
 
@@ -96,8 +96,7 @@ const JobList = () => {
   return (
     <div className="job-list-container">
       <div className="job-list-layout">
-
-          {/* ✅ FILTER SIDEBAR RESTORED */}
+         {/* ✅ FILTER SIDEBAR RESTORED */}
         <div className="filters-sidebar">
           <div className="filters-section">
             <div className="filter-group">
@@ -225,8 +224,6 @@ const JobList = () => {
             </button>
           </div>
         </div>
-
-        {/* ✅ JOB LIST RIGHT SIDE */}
         <div className="jobs-content">
           <div className="search-box">
             <input
@@ -285,13 +282,26 @@ const JobList = () => {
                         Posted: {new Date(job.postedDate).toLocaleDateString()}
                       </span>
                       <div className="job-actions">
-                        <a href={job.applyUrl} target="_blank" rel="noopener noreferrer">
-                          <button className="apply-btn">Apply Now</button>
-                        </a>
+                        {appliedJobIds.includes(job.id) ? (
+                          <button className="apply-btn applied" disabled>
+                            ✅ Applied
+                          </button>
+                        ) : (
+                          <button
+                            className="apply-btn"
+                            onClick={() => {
+                              dispatch(applyToJob(job.id));
+                              window.open(job.applyUrl, '_blank');
+                            }}
+                          >
+                            Apply Now
+                          </button>
+                        )}
+
                         <button
                           onClick={() => {
                             dispatch(saveJob(job));
-                            showToast( "Saved Successfully!");
+                            showToast("Saved Successfully!");
                           }}
                           className="save-btn"
                         >
@@ -306,8 +316,6 @@ const JobList = () => {
           </div>
         </div>
       </div>
-
-      {/* ✅ Toast popup */}
       {toast && <div className="toast-popup">{toast}</div>}
     </div>
   );
