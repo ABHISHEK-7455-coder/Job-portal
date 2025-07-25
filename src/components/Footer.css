@@ -6,6 +6,10 @@
   color: #333;
 }
 
+span {
+  color: rgb(132, 36, 132)
+}
+
 .footer-top {
     width: 70vw;
     margin: auto;
