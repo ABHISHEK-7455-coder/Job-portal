@@ -135,7 +135,7 @@ export default function Header({ user }) {
     <header>
       <div className="header-container">
         <div className="logo">
-          <h3>JOBS FINDER</h3>
+          <h3>JOBS<span>FINDER</span></h3>
         </div>
 
         <div className="header-options">

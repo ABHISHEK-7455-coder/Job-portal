@@ -1,6 +1,5 @@
-import { createServer } from 'miragejs';
+import { createServer, Response } from 'miragejs';
 
-// Categories - normalized by ID
 const CATEGORIES = {
   1: { id: 1, name: 'Software Engineering', slug: 'software-engineering' },
   2: { id: 2, name: 'Data Science', slug: 'data-science' },
@@ -14,7 +13,6 @@ const CATEGORIES = {
   10: { id: 10, name: 'Cloud Engineering', slug: 'cloud' },
 };
 
-// Jobs - normalized by ID with category reference
 const JOBS = {
   1: {
     id: 1,
@@ -502,7 +500,6 @@ const JOBS = {
   },
 };
 
-// Companies - mapping to job IDs
 const COMPANIES = {
   // all:{
   //   id:"all",
@@ -583,22 +580,20 @@ const COMPANIES = {
   }
 };
 
-// Helper Functions
 const getJobById = (id) => {
   const job = JOBS[id];
   if (!job) return null;
-  
+
   return {
     ...job,
     category: CATEGORIES[job.categoryId],
-    company: Object.values(COMPANIES).find(company => company.jobs.includes(id))
+    company: Object.values(COMPANIES).find(company => company.jobs.includes(id)),
   };
 };
 
 const getJobsByCompany = (companyId) => {
   const company = COMPANIES[companyId];
   if (!company) return [];
-  
   return company.jobs.map(jobId => getJobById(jobId)).filter(Boolean);
 };
 
@@ -621,61 +616,48 @@ const searchJobs = (query) => {
   );
 };
 
+const getPersistedApplications = () => {
+  try {
+    const stored = localStorage.getItem('job_applications');
+    return stored ? JSON.parse(stored) : [];
+  } catch {
+    return [];
+  }
+};
+
 export function makeServer() {
   return createServer({
     routes() {
       this.namespace = 'api';
 
       this.post('/upload-resume', (schema, request) => {
-  const formData = JSON.parse(request.requestBody); // since real file can't be handled
-  const fakeUrl = `https://fakecdn.com/uploads/${formData.filename}`;
-  
-  return { message: 'Mock upload success', filePath: fakeUrl };
-});
-
+        const formData = JSON.parse(request.requestBody);
+        const fakeUrl = `https://fakecdn.com/uploads/${formData.filename}`;
+        return { message: 'Mock upload success', filePath: fakeUrl };
+      });
 
       this.get('/profile', () => {
         return {
           name: 'Abhishek Deshwal',
           email: 'abhishek@example.com',
           resume: 'https://example.com/resume.pdf',
-          skills: ['React', 'Java Script', 'Redux', 'HTML', 'CSS']
-        };
-      });
-      
-       this.get("/applications", () => {
-        return {
-          applications: [
-            { id: 1, status: "sent" },
-            { id: 2, status: "sent" },
-            { id: 3, status: "sent" },
-            { id: 4, status: "interview" },
-            { id: 5, status: "interview" },
-            { id: 6, status: "offer" },
-            { id: 7, status: "sent" },
-            { id: 8, status: "interview" },
-            { id: 9, status: "offer" },
-            { id: 10, status: "sent" },
-            { id: 11, status: "sent" },
-            { id: 12, status: "offer" },
-            { id: 13, status: "sent" },
-            { id: 14, status: "interview" },
-            { id: 15, status: "sent" },
-            { id: 16, status: "sent" },
-            { id: 19, status: "sent" },
-          ],
+          skills: ['React', 'Java Script', 'Redux', 'HTML', 'CSS'],
         };
       });
 
-      // Get all jobs
+      this.get('/applications', () => {
+        return {
+          applications: getPersistedApplications(),
+        };
+      });
+
       this.get('/jobs', () => {
         return {
           jobs: getAllJobs(),
-          total: Object.keys(JOBS).length
+          total: Object.keys(JOBS).length,
         };
       });
 
-      // Get job by ID
       this.get('/jobs/:id', (schema, request) => {
         const job = getJobById(parseInt(request.params.id));
         if (!job) {
@@ -684,75 +666,65 @@ export function makeServer() {
         return { job };
       });
 
-      // Get jobs by company
       this.get('/companies/:companyId/jobs', (schema, request) => {
         const jobs = getJobsByCompany(request.params.companyId);
         const company = COMPANIES[request.params.companyId];
-        
         return {
           jobs,
           company,
-          total: jobs.length
+          total: jobs.length,
         };
       });
 
-      // Get jobs by category
       this.get('/categories/:categoryId/jobs', (schema, request) => {
         const jobs = getJobsByCategory(request.params.categoryId);
         const category = CATEGORIES[parseInt(request.params.categoryId)];
-        
         return {
           jobs,
           category,
-          total: jobs.length
+          total: jobs.length,
         };
       });
 
-      // Search jobs
       this.get('/jobs/search', (schema, request) => {
         const { q } = request.queryParams;
         if (!q) return { jobs: [], total: 0 };
-        
         const jobs = searchJobs(q);
         return {
           jobs,
           total: jobs.length,
-          query: q
+          query: q,
         };
       });
 
-      // Get all categories
       this.get('/categories', () => {
         return {
           categories: Object.values(CATEGORIES),
-          total: Object.keys(CATEGORIES).length
+          total: Object.keys(CATEGORIES).length,
         };
       });
 
-      // Get all companies
       this.get('/companies', () => {
         return {
           companies: Object.values(COMPANIES),
-          total: Object.keys(COMPANIES).length
+          total: Object.keys(COMPANIES).length,
         };
       });
 
-      // Get stats
       this.get('/stats', () => {
         const allJobs = getAllJobs();
-        
         return {
           totalJobs: allJobs.length,
           totalCompanies: Object.keys(COMPANIES).length,
           totalCategories: Object.keys(CATEGORIES).length,
           jobsByCategory: Object.values(CATEGORIES).map(category => ({
             category: category.name,
-            count: getJobsByCategory(category.id).length
+            count: getJobsByCategory(category.id).length,
           })),
           jobsByCompany: Object.values(COMPANIES).map(company => ({
             company: company.name,
-            count: company.jobs.length
-          }))
+            count: company.jobs.length,
+          })),
         };
       });
     },

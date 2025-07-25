@@ -1,127 +1,41 @@
-/* .header {
-  background: #fff;
-  border-bottom: 1px solid #ddd;
+header {
   padding: 10px 0;
   position: sticky;
   top: 0;
   z-index: 100;
-  border-radius: 30px;
-    margin: auto;
-    width: 90vw;
-    height: 7vh;
+  height: 7vh;
 }
 
-.header-container {
-  max-width: 1200px;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-}
-
-.logo {
-  font-size: 20px;
-  font-weight: bold;
-  color: #10131d;
-}
-
-.search-login {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.search-box {
-  padding: 17px 15%;
-  border: 1px solid #ccc;
-  border-radius: 30px;
-}
-
-.btn {
-  padding: 6px 12px;
-  border: none;
-  cursor: pointer;
-  font-size: 14px;
-  border-radius: 30px;
-}
-
-.login {
-  font-size: 14px;
-    
-    padding: 17px 34px;
-  background: #10131d;
-  color: white;
-}
-
-.register {
-  font-size: 14px;
-   
-    padding: 17px 34px;
-  background: white;
-  color: #10131d;
-  border: 1px solid #10131d;
-} */
-.header-container {
-   height: 10vh;
-    display: flex;
-    justify-content:space-between;
-    align-items: center;
-    /* width: 90%; */
-    margin: auto;
-    background-color: white;
-    /* border-radius: 30px; */
-    box-shadow: rgba(9, 9, 9, 0.35) 0px 8px 20px;
-    padding: 0px 10px;
-    /* margin-top: 15px; */
-}
-
-/* .header-options {
-    padding-top: 20px;
-} */
-
-.header-options a {
-    margin: 0px 30px;
-    text-decoration: none;
-    color: black;
-}
-.logo{
-  margin-left: 33px;
-}
-.accounts-btn {
-    /* padding-top: 16px; */
-}
-
-.accounts-btn button {
-    background:black;
-    color: white;
-    font-size: 17px;
-    border: none;
-    padding: 15px 35px ;
-    margin: 0px 5px;
-    border-radius: 35px;
-    /* padding: 4px 15px; */
-}
 
 .header-container {
   height: 10vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 70%;
   margin: auto;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 35px;
   box-shadow: rgba(9, 9, 9, 0.35) 0px 8px 20px;
   padding: 0px 10px;
+  margin-top: 15px;
 }
 
 .header-options a {
   margin: 0px 30px;
   text-decoration: none;
   color: black;
+  font-size: 18px;
 }
 
 .logo {
   margin-left: 33px;
+  font-family: monospace;
+  font-size: 20px;
+}
+
+.logo span {
+  color: rgb(132, 36, 132);
 }
 
 .accounts-btn button {
@@ -129,7 +43,7 @@
   color: white;
   font-size: 17px;
   border: none;
-  padding: 15px 35px;
+  padding: 10px 35px;
   margin: 0px 5px;
   border-radius: 35px;
 }
@@ -165,7 +79,7 @@
   color: black;
   border: 1px solid #ccc;
   border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   z-index: 100;
   display: flex;
   flex-direction: column;
