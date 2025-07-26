@@ -6,7 +6,7 @@ function Footer() {
     <footer className="footer">
       <div className="footer-top">
         <div className="footer-logo-section">
-          <h2 className="footer-logo">Job <span>FINDER</span></h2>
+          <h2 className="footer-logo">JOBS<span>FINDER</span></h2>
         </div>
         <div className="footer-links">
           <div>
