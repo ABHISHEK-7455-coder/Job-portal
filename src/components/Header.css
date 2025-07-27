@@ -123,7 +123,7 @@ header.shrink {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 80%; /* Default full width */
+  width: 85%; /* Default full width */
   margin: auto;
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 35px;
