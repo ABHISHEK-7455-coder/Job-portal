@@ -141,7 +141,7 @@ export default function Header({ user }) {
 
         <div className="header-options">
           <a href="/">Home</a>
-          <a href="/footer">About</a>
+          <a href="/about">About</a>
           <a href="/jobs">Jobs</a>
           <a href="/candidates">Candidates</a>
           <a href="/footer">Contact Us</a>

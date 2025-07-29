@@ -84,6 +84,7 @@ import AuthForm from "./components/AuthForm"; // Import AuthForm
 import { supabase } from "./SupabaseClient";
 import { makeServer } from "./services/mirage/server";
 import ContactUs from "./components/ContactUs";
+import AboutUs from "./components/AboutUs";
 
 if (process.env.NODE_ENV === "development") {
   makeServer();
@@ -115,6 +116,7 @@ function App() {
         <Routes>
           <Route path="/" element={<><Hero /><Main /><Footer /></>} />
           <Route path="/jobs" element={<><JobList /><Footer /></>} />
+          <Route path="/about" element={<><AboutUs/><Footer /></>}/>
           <Route path="/contact" element={<><ContactUs/><Footer /></>}/>
           <Route path="/auth" element={<AuthForm onAuthSuccess={() => setUser (true)} />} />
             
