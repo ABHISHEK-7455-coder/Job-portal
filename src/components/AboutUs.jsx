@@ -100,14 +100,14 @@ const AboutUs = () => {
   return (
     <div className="about-container">
       {/* Hero Section */}
-      <div className={heroSection `${heroVisible ? 'hero-visible' : ''}`}>
+      <div className={`heroSection ${heroVisible ? 'hero-visible' : ''}`}>
         <div className="glass-hero-content">
           <h1 className="hero-title">About JobFinder</h1>
           <p className="hero-subtitle">Your Ultimate Job Search Companion</p>
           <div className="hero-stats">
             {stats.map((stat, index) => (
               <div key={index} className="stat-item" style={{animationDelay: `${index * 0.2}s`}}>
-                <i className={stat-icon `${stat.icon}`}></i>
+                <i className={`stat-icon ${stat.icon}`}></i>
                 <span className="stat-number">{stat.number}</span>
                 <span className="stat-label">{stat.label}</span>
               </div>
@@ -120,7 +120,7 @@ const AboutUs = () => {
       <div className="glass-grid">
         {features.map((feature, index) => (
           <div key={index} className="glass-card feature-card">
-            <i className={feature-icon-large `${feature.icon}`}></i>
+            <i className={`feature-icon-large ${feature.icon}`}></i>
             <h3>{feature.title}</h3>
             <p>{feature.description}</p>
             <ul>
