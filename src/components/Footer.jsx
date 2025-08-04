@@ -1,21 +1,21 @@
 import React from "react";
-import "./Footer.css";
+import "../styles/Footer.css";
 
 function Footer() {
   return (
     <footer className="footer">
       <div className="footer-top">
         <div className="footer-logo-section">
-          <h2 className="footer-logo">JOBS<span>FINDER</span></h2>
+          <h2 className="footer-logo">JobFinder</h2>
         </div>
         <div className="footer-links">
           <div>
-            <h4>Job Finder</h4>
+            <h4>JobFinder</h4>
             <ul>
               <li>About / Press</li>
               <li>Blog</li>
               <li>Contact Us</li>
-              <li>Grievance Officer – India</li>
+              <li>– India</li>
             </ul>
           </div>
           <div>
@@ -47,28 +47,43 @@ function Footer() {
       </div>
 
       <div className="footer-middle">
-        <div className="app-links">
+        {/* <div className="app-links">
           <span>Download the App</span>
           
-           <a href="#" className="fa fa-android"></a>
+           <a href="#" class="fa fa-android"></a>
+            <a href="#" class="fa fa-apple"></a>
           
         </div>
         <div className="social-icons">
-         <a href="#" className="fa fa-linkedin"></a>
-        <a href="#" className="fa fa-pinterest"></a>
-        <a href="#" className="fa fa-reddit"></a>
-         <a href="#" className="fa fa-youtube"></a>
-          <a href="#" className="fa fa-twitter"></a>
-           <a href="#" className="fa fa-instagram"></a>
+         <a href="#" class="fa fa-linkedin"></a>
+        <a href="#" class="fa fa-pinterest"></a>
+        <a href="#" class="fa fa-reddit"></a>
+         <a href="#" class="fa fa-youtube"></a>
+          <a href="#" class="fa fa-twitter"></a>
+           <a href="#" class="fa fa-instagram"></a>
           
-        </div>
-        <div className="country-select">
+        </div> */}
+        <div className="app-links">
+  <span>Download the App</span>
+  <a href="#"><i className="fab fa-google-play"></i></a>
+  <a href="#"><i className="fab fa-apple"></i></a>
+</div>
+
+<div className="social-icons">
+  <a href="#"><i className="fab fa-linkedin"></i></a>
+  <a href="#"><i className="fab fa-pinterest"></i></a>
+  <a href="#"><i className="fab fa-reddit"></i></a>
+  <a href="#"><i className="fab fa-youtube"></i></a>
+  <a href="#"><i className="fab fa-twitter"></i></a>
+  <a href="#"><i className="fab fa-instagram"></i></a>
+</div>
+        {/* <div className="country-select">
           <select>
             <option>India</option>
             <option>USA</option>
             <option>UK</option>
           </select>
-        </div>
+        </div> */}
       </div>
 
       <div className="footer-bottom">
