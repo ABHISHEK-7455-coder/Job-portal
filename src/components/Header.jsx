@@ -61,7 +61,7 @@ export default function Header({ user }) {
   };
 
   return (
-    <header className={${!isJobsPage ? "sticky" : "non-sticky"} ${isShrunk ? "shrink" : ""}}>
+    <header className={`${!isJobsPage ? "sticky" : "non-sticky"} ${isShrunk ? "shrink" : ""}`}>
       <div className="header-container">
         <div className="logo">
           <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
@@ -100,7 +100,7 @@ export default function Header({ user }) {
 
         {/* Hamburger Menu Button */}
         <div 
-          className={hamburger ${isMobileMenuOpen ? 'active' : ''}}
+          className={`hamburger ${isMobileMenuOpen ? 'active' : ''}`}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           <span></span>
@@ -110,7 +110,7 @@ export default function Header({ user }) {
       </div>
 
       {/* Mobile Menu Overlay */}
-      <div className={mobile-menu-overlay ${isMobileMenuOpen ? 'active' : ''}}`>
+      <div className={`mobile-menu-overlay ${isMobileMenuOpen ? 'active' : ''}`}>
         <div className="mobile-menu">
           <div className="mobile-menu-header">
             <div className="mobile-logo">
