@@ -233,7 +233,7 @@ const JobList = () => {
     <div className="job-list-container">
       {/* Mobile filter toggle button */}
       <button className="filter-toggle" onClick={toggleSidebar}>
-        <i className="fa fa-filter"></i> Filters
+        <i className="fa fa-filter"></i> FILTERS
       </button>
 
       {/* Sidebar overlay for mobile */}
