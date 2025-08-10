@@ -100,7 +100,7 @@ header.shrink .header-options a {
   height: 50px;
   background-color: #020202be;
   color: white;
-  border-radius: 50%;
+  border-radius: 51%;
   display: flex;
   align-items: center;
   justify-content: center;
