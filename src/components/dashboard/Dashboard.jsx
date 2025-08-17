@@ -250,7 +250,8 @@ const Dashboard = ({ user, onSignOut }) => {
   };
 
   return (
-    <div className="dashboard-container">
+    
+      <div className="dashboard-container">
       <header className="dashboard-header">
         <h1>Welcome back, {user?.email || 'User '}!</h1>
         {/* <button onClick={handleSignOut}>Sign Out</button> */}
@@ -261,10 +262,10 @@ const Dashboard = ({ user, onSignOut }) => {
             {tabs.map(tab => (
               <button
                 key={tab.id}
-                className={nav-tab ${activeTab === tab.id ? 'active' : ''}}
+                className={nav-tab `${activeTab === tab.id ? 'active' : ''} `}
                 onClick={() => dispatch(setActiveTab(tab.id))}
               >
-                <i className={tab-icon ${tab.icon}}></i>
+                <i className={tab-icon `${tab.icon}`}></i>
                 <span className="tab-label">{tab.label}</span>
               </button>
             ))}
@@ -280,6 +281,7 @@ const Dashboard = ({ user, onSignOut }) => {
         </main>
       </div>
     </div>
+    
   );
 };
 
