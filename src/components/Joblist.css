@@ -5,7 +5,7 @@ h1 {
 }
 .sticky-search-bar
 .job-list-container {
-  padding: 20px;
+  padding: 22px;
 }
 
 .job-card {
@@ -13,7 +13,7 @@ h1 {
   background-color: #fff;
   padding: 20px;
   border-radius: 12px;
-  max-width: 600px;
+  max-width: 700px;
   margin: 20px auto;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
