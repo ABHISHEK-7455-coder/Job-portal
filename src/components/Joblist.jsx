@@ -1245,7 +1245,7 @@ const Pagination = ({ pagination, onPageChange, onJobsPerPageChange }) => {
         </div>
 
         <button
-          className={pagination-btn ${!hasNextPage ? 'disabled' : ''}}
+          className={pagination-btn `${!hasNextPage ? 'disabled' : ''}`}
           onClick={() => onPageChange(currentPage + 1)}
           disabled={!hasNextPage}
         >
@@ -1752,4 +1752,4 @@ const JobList = () => {
 
   // Static filter options
   const experienceOptions = ['Fresher', 'Mid-level', 'Senior', '1 yr', '2 yrs', '3 yrs', '4 yrs', '5 yrs'];
-  const locationOptions = ['Remote', 'Se
+  const locationOptions = ['Remote', 'Se']}
