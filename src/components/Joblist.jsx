@@ -1,4 +1,6 @@
 // import { useEffect, useState, useCallback, useRef } from 'react';
+
+
 // import { useSelector, useDispatch } from 'react-redux';
 // import { useDataLoader } from '../hooks/useDataLoader';
 // import {
@@ -19,6 +21,214 @@
 // import './Joblist.css';
 // import { saveJob } from '../redux/savedJobsSlice';
 // import { useLocation } from 'react-router-dom';
+
+// // Job Details Modal Component
+// const JobDetailsModal = ({ job, isOpen, onClose, onSave, onApply }) => {
+//   const [activeTab, setActiveTab] = useState('overview');
+
+//   useEffect(() => {
+//     const handleEscape = (e) => {
+//       if (e.key === 'Escape') {
+//         onClose();
+//       }
+//     };
+
+//     if (isOpen) {
+//       document.addEventListener('keydown', handleEscape);
+//       document.body.style.overflow = 'hidden';
+//     }
+
+//     return () => {
+//       document.removeEventListener('keydown', handleEscape);
+//       document.body.style.overflow = '';
+//     };
+    
+//   }, [isOpen, onClose]);
+
+//   if (!isOpen || !job) return null;
+
+//   const formatSalary = (salary) => {
+//     if (!salary?.min || !salary?.max) return 'Salary not specified';
+//     const formatter = new Intl.NumberFormat('en-US', {
+//       style: 'currency',
+//       currency: salary.currency || 'USD',
+//       minimumFractionDigits: 0,
+//       maximumFractionDigits: 0,
+//     });
+//     return ${formatter.format(salary.min)} - ${formatter.format(salary.max)};
+//   };
+
+//   return (
+//     <div className="modal-overlay" onClick={onClose}>
+//       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+//         <div className="modal-header">
+//           <div className="modal-title-section">
+//             <h1 className="modal-job-title">{job.title || 'No Title'}</h1>
+//             <div className="modal-company-info">
+//               <span className="modal-company-name">
+//                 {job.companies?.name || job.company?.name || 'Company not specified'}
+//               </span>
+//               <span className="modal-separator">||</span>
+//               <span className="modal-location">{job.location || 'Location not specified'}</span>
+//             </div>
+//           </div>
+//           <button className="modal-close-btn" onClick={onClose}>
+//             <i className="fa fa-times"></i>
+//           </button>
+//         </div>
+
+//         <div className="modal-tabs">
+//           <button 
+//             className={modal-tab ${activeTab === 'overview' ? 'active' : ''}}
+//             onClick={() => setActiveTab('overview')}
+//           >
+//             Overview
+//           </button>
+//           <button 
+//             className={modal-tab ${activeTab === 'requirements' ? 'active' : ''}}
+//             onClick={() => setActiveTab('requirements')}
+//           >
+//             Requirements
+//           </button>
+//           <button 
+//             className={modal-tab ${activeTab === 'details' ? 'active' : ''}}
+//             onClick={() => setActiveTab('details')}
+//           >
+//             Job Details
+//           </button>
+//         </div>
+
+//         <div className="modal-body">
+//           {activeTab === 'overview' && (
+//             <div className="modal-tab-content">
+//               <div className="modal-quick-info">
+//                 <div className="modal-info-item">
+//                   <span className="modal-info-label">Category:</span>
+//                   <span className="modal-category-badge">
+//                     {job.categories?.name || job.category?.name || 'Category not specified'}
+//                   </span>
+//                 </div>
+//                 <div className="modal-info-item">
+//                   <span className="modal-info-label">Experience:</span>
+//                   <span>{job.experience || 'Not specified'}</span>
+//                 </div>
+//                 <div className="modal-info-item">
+//                   <span className="modal-info-label">Type:</span>
+//                   <span>{job.type || 'Not specified'}</span>
+//                 </div>
+//                 {job.salary && (
+//                   <div className="modal-info-item">
+//                     <span className="modal-info-label">Salary:</span>
+//                     <span className="modal-salary">{formatSalary(job.salary)}</span>
+//                   </div>
+//                 )}
+//                 <div className="modal-info-item">
+//                   <span className="modal-info-label">Posted:</span>
+//                   <span>{job.postedDate || job.created_at ? new Date(job.postedDate || job.created_at).toLocaleDateString() : 'Date not available'}</span>
+//                 </div>
+//               </div>
+              
+//               <div className="modal-description">
+//                 <h3>Job Description</h3>
+//                 <p>{job.description || 'No description available'}</p>
+//               </div>
+//             </div>
+//           )}
+
+//           {activeTab === 'requirements' && (
+//             <div className="modal-tab-content">
+//               {job.requirements?.length > 0 ? (
+//                 <div className="modal-requirements">
+//                   <h3>Requirements</h3>
+//                   <ul>
+//                     {job.requirements.map((req, index) => (
+//                       <li key={index}>{req}</li>
+//                     ))}
+//                   </ul>
+//                 </div>
+//               ) : (
+//                 <div className="modal-no-content">
+//                   <p>No specific requirements listed for this position.</p>
+//                 </div>
+//               )}
+              
+//               {job.responsibilities?.length > 0 && (
+//                 <div className="modal-responsibilities">
+//                   <h3>Responsibilities</h3>
+//                   <ul>
+//                     {job.responsibilities.map((resp, index) => (
+//                       <li key={index}>{resp}</li>
+//                     ))}
+//                   </ul>
+//                 </div>
+//               )}
+//             </div>
+//           )}
+
+//           {activeTab === 'details' && (
+//             <div className="modal-tab-content">
+//               <div className="modal-additional-details">
+//                 <h3>Additional Information</h3>
+                
+//                 {job.benefits?.length > 0 && (
+//                   <div className="modal-section">
+//                     <h4>Benefits</h4>
+//                     <ul>
+//                       {job.benefits.map((benefit, index) => (
+//                         <li key={index}>{benefit}</li>
+//                       ))}
+//                     </ul>
+//                   </div>
+//                 )}
+
+//                 <div className="modal-section">
+//                   <h4>Job Information</h4>
+//                   <div className="modal-info-grid">
+//                     <div className="modal-info-item">
+//                       <span className="modal-info-label">Department:</span>
+//                       <span>{job.department || 'Not specified'}</span>
+//                     </div>
+//                     <div className="modal-info-item">
+//                       <span className="modal-info-label">Employment Type:</span>
+//                       <span>{job.employmentType || job.type || 'Not specified'}</span>
+//                     </div>
+//                     <div className="modal-info-item">
+//                       <span className="modal-info-label">Work Schedule:</span>
+//                       <span>{job.schedule || 'Not specified'}</span>
+//                     </div>
+//                     <div className="modal-info-item">
+//                       <span className="modal-info-label">Remote Work:</span>
+//                       <span>{job.remoteWork ? 'Available' : job.location?.includes('Remote') ? 'Available' : 'Not available'}</span>
+//                     </div>
+//                   </div>
+//                 </div>
+//               </div>
+//             </div>
+//           )}
+//         </div>
+
+//         <div className="modal-footer">
+//           <div className="modal-actions">
+//             <button onClick={onSave} className="modal-save-btn">
+//               {/* <i className='fa fa-bookmark-o' style={{color: 'white'}}></i> */}
+//               Save Job
+//             </button>
+//             {job.applyUrl || job.apply_url || job.applicationUrl || job.application_url || job.url || job.link ? (
+//               <button onClick={onApply} className="modal-apply-btn">
+//                 <i className="fa fa-external-link"></i>
+//                 Apply Now
+//               </button>
+//             ) : (
+//               <button className="modal-apply-btn disabled" disabled>
+//                 Apply Link Unavailable
+//               </button>
+//             )}
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
 
 // // Pagination Component - Only shown on desktop
 // const Pagination = ({ pagination, onPageChange, onJobsPerPageChange }) => {
@@ -193,6 +403,8 @@
 //   const [toast, setToast] = useState(null);
 //   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 //   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+//   const [selectedJob, setSelectedJob] = useState(null);
+//   const [isModalOpen, setIsModalOpen] = useState(false);
 //   const location = useLocation();
 //   const isJobPage = location.pathname === '/jobs';
   
@@ -298,44 +510,25 @@
 //   }, []);
 
 //   // Sidebar management effects
-//   // useEffect(() => {
-//   //   const handleClickOutside = (event) => {
-//   //     if (isSidebarOpen && !event.target.closest('.filters-sidebar') && !event.target.closest('.filter-toggle')) {
-//   //       setIsSidebarOpen(false);
-//   //     }
-//   //   };
+//   useEffect(() => {
+//     const handleClickOutside = (event) => {
+//       if (isSidebarOpen && !event.target.closest('.filters-sidebar') && !event.target.closest('.filter-toggle')) {
+//         setIsSidebarOpen(false);
+//       }
+//     };
 
-//   //   if (isSidebarOpen) {
-//   //     document.addEventListener('mousedown', handleClickOutside);
-//   //     document.body.style.overflow = 'hidden';
-//   //   } else {
-//   //     document.body.style.overflow = 'unset';
-//   //   }
-
-//   //   return () => {
-//   //     document.removeEventListener('mousedown', handleClickOutside);
-//   //     document.body.style.overflow = 'unset';
-//   //   };
-//   // }, [isSidebarOpen]);
-//    useEffect(() => {
-//   const handleClickOutside = (event) => {
-//     if (isSidebarOpen && !event.target.closest('.filters-sidebar') && !event.target.closest('.filter-toggle')) {
-//       setIsSidebarOpen(false);
+//     if (isSidebarOpen) {
+//       document.addEventListener('mousedown', handleClickOutside);
+//       document.body.classList.add('body-no-scroll');
+//     } else {
+//       document.body.classList.remove('body-no-scroll');
 //     }
-//   };
 
-//   if (isSidebarOpen) {
-//     document.addEventListener('mousedown', handleClickOutside);
-//     document.body.classList.add('body-no-scroll'); // Add class to hide overflow
-//   } else {
-//     document.body.classList.remove('body-no-scroll'); // Remove class to allow scrolling
-//   }
-
-//   return () => {
-//     document.removeEventListener('mousedown', handleClickOutside);
-//     document.body.classList.remove('body-no-scroll'); // Ensure class is removed on cleanup
-//   };
-// }, [isSidebarOpen]);
+//     return () => {
+//       document.removeEventListener('mousedown', handleClickOutside);
+//       document.body.classList.remove('body-no-scroll');
+//     };
+//   }, [isSidebarOpen]);
 
 //   // FIXED: Load initial data only once with proper initialization
 //   useEffect(() => {
@@ -475,18 +668,6 @@
 //     }
 //   }, [infiniteScroll.hasMore, infiniteScroll.isLoading, dispatch, loadMoreJobs, pagination, showToast]);
 
-//   // Memoized salary formatter
-//   const formatSalary = useCallback((salary) => {
-//     if (!salary?.min || !salary?.max) return 'Salary not specified';
-//     const formatter = new Intl.NumberFormat('en-US', {
-//       style: 'currency',
-//       currency: salary.currency || 'USD',
-//       minimumFractionDigits: 0,
-//       maximumFractionDigits: 0,
-//     });
-//     return ${formatter.format(salary.min)} - ${formatter.format(salary.max)};
-//   }, []);
-
 //   // NEW: Apply filters function
 //   const handleApplyFilters = useCallback(() => {
 //     dispatch(setSelectedCategory(pendingFilters.selectedCategory));
@@ -574,6 +755,52 @@
 //     });
 //   }, []);
 
+//   // Modal handlers
+//   const handleViewDetails = useCallback((job) => {
+//     setSelectedJob(job);
+//     setIsModalOpen(true);
+//   }, []);
+
+//   const handleCloseModal = useCallback(() => {
+//     setIsModalOpen(false);
+//     setSelectedJob(null);
+//   }, []);
+
+//   const handleSaveFromModal = useCallback(async () => {
+//     if (!selectedJob) return;
+    
+//     try {
+//       const result = await dispatch(saveJob({ 
+//         jobId: selectedJob.id,
+//         notes: '',
+//         priority: 0
+//       }));
+
+//       if (result.meta.requestStatus === 'fulfilled') {
+//         showToast("Job saved successfully!");
+//       } else if (result.meta.requestStatus === 'rejected') {
+//         const errorMessage = result.payload || "Failed to save job";
+//         if (errorMessage.includes('already saved')) {
+//           showToast("Job is already saved");
+//         } else {
+//           showToast(errorMessage);
+//         }
+//       }
+//     } catch (error) {
+//       console.error('Error saving job:', error);
+//       showToast("Failed to save job");
+//     }
+//   }, [selectedJob, dispatch, showToast]);
+
+//   const handleApplyFromModal = useCallback(() => {
+//     if (!selectedJob) return;
+    
+//     const applyUrl = selectedJob.applyUrl || selectedJob.apply_url || selectedJob.applicationUrl || selectedJob.application_url || selectedJob.url || selectedJob.link;
+//     if (applyUrl) {
+//       window.open(applyUrl, '_blank', 'noopener,noreferrer');
+//     }
+//   }, [selectedJob]);
+
 //   if (!initialLoadComplete) {
 //     return <div className="loading">Loading jobs...</div>;
 //   }
@@ -617,9 +844,6 @@
 //           {isMobile && (
 //             <div className="sidebar-header">
 //               <h3><i className="fa fa-filter"></i> Filters</h3>
-//               {/* {hasUnappliedFilters && (
-//                 <span className="unapplied-badge">Changes pending</span>
-//               )} */}
 //             </div>
 //           )}
           
@@ -641,6 +865,7 @@
 //                 Clear All
 //               </button>
 //             </div>
+
 //             <div className="FilterGroup">
 //               <h4>Category</h4>
 //               {categories.map((category) => (
@@ -715,30 +940,12 @@
 //                 </label>
 //               ))}
 //             </div>
-
-//             {/* Filter Action Buttons */}
-//             {/* <div className="filter-actions">
-//               <button 
-//                 onClick={handleApplyFilters} 
-//                 className={apply-filters-btn ${hasUnappliedFilters ? 'highlighted' : ''}}
-//                 disabled={!hasUnappliedFilters}
-//               >
-//                 <i className="fa fa-check"></i>
-//                 Apply Filters
-//                 {hasUnappliedFilters && <span className="pulse-dot"></span>}
-//               </button>
-              
-//               <button onClick={handleClearFilters} className="clear-filters-btn">
-//                 <i className="fa fa-refresh"></i>
-//                 Clear All
-//               </button>
-//             </div> */}
 //           </div>
 //         </div>
 
 //         <div className="jobs-content">
 //           {/* Search Bar in JobList */}
-//           {isJobPage && (
+//           {/* {isJobPage && (
 //             <div className="search-bar sticky-search-bar">
 //               <div className="search-field">
 //                 <span className="icon"><i className="fa fa-search"></i></span>
@@ -796,7 +1003,7 @@
 //                 Search
 //               </button>
 //             </div>
-//           )}
+//           )} */}
 
 //           {/* Mobile job count info */}
 //           {isMobile && (
@@ -809,11 +1016,11 @@
 //           )}
 
 //           {/* Pagination - Top (Desktop only) */}
-//           <Pagination
+//           {/* <Pagination
 //             pagination={pagination}
 //             onPageChange={handlePageChange}
 //             onJobsPerPageChange={handleJobsPerPageChange}
-//           />
+//           /> */}
 
 //           <div className="jobs-grid">
 //             {displayJobs.length === 0 ? (
@@ -822,7 +1029,7 @@
 //               </div>
 //             ) : (
 //               displayJobs.map((job, index) => (
-//                 <div key={${job.id}-${index}-${isMobile ? 'mobile' : 'desktop'}} className="job-card">
+//                 <div key={${job.id}-${index}-${isMobile ? 'mobile' : 'desktop'}} className="job-card job-card-minimal">
 //                   <div className="job-header">
 //                     <h2 className="job-title">{job.title || 'No Title'}</h2>
 //                     <div className="job-meta">
@@ -831,49 +1038,36 @@
 //                     </div>
 //                   </div>
 
-//                   <div className="job-details">
+//                   <div className="job-details job-details-minimal">
 //                     <div className="job-category">
 //                       <span className="category-badge">{job.categories?.name || job.category?.name || 'Category not specified'}</span>
 //                     </div>
 
-//                     <div className="job-info">
+//                     <div className="job-info job-info-minimal">
 //                       <p><strong>Experience:</strong> {job.experience || 'Not specified'}</p>
 //                       <p><strong>Type:</strong> {job.type || 'Not specified'}</p>
 //                     </div>
 
-//                     <div className="job-description">
-//                       <p>{job.description || 'No description available'}</p>
+//                     <div className="job-description job-description-minimal">
+//                       <p>{job.description ? 
+//                         (job.description.length > 150 ? 
+//                           job.description.substring(0, 150) + '...' : 
+//                           job.description) : 
+//                         'No description available'}</p>
 //                     </div>
-
-//                     {job.requirements?.length > 0 && (
-//                       <div className="job-requirements">
-//                         <h4>Requirements:</h4>
-//                         <ul>
-//                           {job.requirements.map((req, index) => (
-//                             <li key={index}>{req}</li>
-//                           ))}
-//                         </ul>
-//                       </div>
-//                     )}
 
 //                     <div className="job-footer">
 //                       <span className="posted-date">
 //                         Posted: {job.postedDate || job.created_at ? new Date(job.postedDate || job.created_at).toLocaleDateString() : 'Date not available'}
 //                       </span>
 //                       <div className="job-actions">
-//                         {job.applyUrl || job.apply_url || job.applicationUrl || job.application_url || job.url || job.link ? (
-//                           <a href={job.applyUrl || job.apply_url || job.applicationUrl || job.application_url || job.url || job.link} target="_blank" rel="noopener noreferrer">
-//                             <button className="apply-btn">Apply Now</button>
-//                           </a>
-//                         ) : (
-//                           <button 
-//                             className="apply-btn disabled"
-//                             onClick={() => showToast("Application link not available for this job")}
-//                             title="Application link not available"
-//                           >
-//                             Apply
-//                           </button>
-//                         )}
+//                         <button
+//                           onClick={() => handleViewDetails(job)}
+//                           className="view-details-btn"
+//                         >
+//                           <i className="fa fa-eye"></i>
+//                           View Details
+//                         </button>
 //                         <button
 //                           onClick={async () => {
 //                             try {
@@ -904,7 +1098,8 @@
 //                           }}
 //                           className="save-btn"
 //                         >
-//                           Save Job
+                          
+//                           Save
 //                         </button>
 //                       </div>
 //                     </div>
@@ -932,6 +1127,15 @@
 //           />
 //         </div>
 //       </div>
+
+//       {/* Job Details Modal */}
+//       <JobDetailsModal
+//         job={selectedJob}
+//         isOpen={isModalOpen}
+//         onClose={handleCloseModal}
+//         onSave={handleSaveFromModal}
+//         onApply={handleApplyFromModal}
+//       />
       
 //       {toast && <div className="toast-popup">{toast}</div>}
 //     </div>
@@ -939,7 +1143,6 @@
 // };
 
 // export default JobList;
-
 import { useEffect, useState, useCallback, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useDataLoader } from '../hooks/useDataLoader';
@@ -980,8 +1183,9 @@ const JobDetailsModal = ({ job, isOpen, onClose, onSave, onApply }) => {
 
     return () => {
       document.removeEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
     };
+    
   }, [isOpen, onClose]);
 
   if (!isOpen || !job) return null;
@@ -1007,7 +1211,7 @@ const JobDetailsModal = ({ job, isOpen, onClose, onSave, onApply }) => {
               <span className="modal-company-name">
                 {job.companies?.name || job.company?.name || 'Company not specified'}
               </span>
-              <span className="modal-separator">•</span>
+              <span className="modal-separator">||</span>
               <span className="modal-location">{job.location || 'Location not specified'}</span>
             </div>
           </div>
@@ -1149,7 +1353,6 @@ const JobDetailsModal = ({ job, isOpen, onClose, onSave, onApply }) => {
         <div className="modal-footer">
           <div className="modal-actions">
             <button onClick={onSave} className="modal-save-btn">
-              <i className="fa fa-bookmark"></i>
               Save Job
             </button>
             {job.applyUrl || job.apply_url || job.applicationUrl || job.application_url || job.url || job.link ? (
@@ -1245,7 +1448,7 @@ const Pagination = ({ pagination, onPageChange, onJobsPerPageChange }) => {
         </div>
 
         <button
-          className={pagination-btn `${!hasNextPage ? 'disabled' : ''}`}
+          className={pagination-btn ${!hasNextPage ? 'disabled' : ''}}
           onClick={() => onPageChange(currentPage + 1)}
           disabled={!hasNextPage}
         >
@@ -1386,12 +1589,16 @@ const JobList = () => {
       if (wasMobile !== mobile) {
         dispatch(resetInfiniteScroll());
         setInfiniteScrollInitialized(false);
+        // Close sidebar when switching from mobile to desktop
+        if (!mobile && isSidebarOpen) {
+          setIsSidebarOpen(false);
+        }
       }
     };
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [dispatch, isMobile]);
+  }, [dispatch, isMobile, isSidebarOpen]);
 
   // NEW: Initialize pending filters from current filters
   useEffect(() => {
@@ -1524,232 +1731,3 @@ const JobList = () => {
         resetList: true 
       }));
       setInfiniteScrollInitialized(true);
-      isLoadingMoreRef.current = false; // Reset loading ref
-    }
-  }, [jobs, isMobile, pagination, dispatch, initialLoadComplete, infiniteScrollInitialized, infiniteScroll.allJobs.length]);
-
-  // FIXED: Scroll to top when page changes (desktop only)
-  useEffect(() => {
-    if (!isMobile && pagination.currentPage > 1) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  }, [pagination.currentPage, isMobile]);
-
-  // FIXED: Handle page change - ensure it triggers data reload
-  const handlePageChange = useCallback((newPage) => {
-    if (!isMobile && newPage !== pagination.currentPage) {
-      console.log('Page change requested:', newPage, 'Current:', pagination.currentPage);
-      dispatch(setCurrentPage(newPage));
-      
-      // Force reload jobs for the new page
-      loadJobs({ page: newPage }).catch(error => {
-        console.error('Failed to load jobs for page:', newPage, error);
-      });
-    }
-  }, [dispatch, isMobile, pagination.currentPage, loadJobs]);
-
-  // FIXED: Handle jobs per page change - ensure it reloads data
-  const handleJobsPerPageChange = useCallback((newJobsPerPage) => {
-    if (!isMobile && newJobsPerPage !== pagination.jobsPerPage) {
-      console.log('Jobs per page change requested:', newJobsPerPage);
-      dispatch(setJobsPerPage(newJobsPerPage));
-      
-      // Force reload jobs with new page size
-      loadJobs({ limit: newJobsPerPage, page: 1 }).catch(error => {
-        console.error('Failed to load jobs with new page size:', newJobsPerPage, error);
-      });
-    }
-  }, [dispatch, isMobile, pagination.jobsPerPage, loadJobs]);
-
-  // FIXED: Mobile infinite scroll load more function with proper error handling
-  const handleLoadMore = useCallback(async () => {
-    // Prevent multiple simultaneous calls
-    if (!infiniteScroll.hasMore || infiniteScroll.isLoading || isLoadingMoreRef.current) {
-      console.log('Cannot load more:', { 
-        hasMore: infiniteScroll.hasMore, 
-        isLoading: infiniteScroll.isLoading,
-        isLoadingMoreRef: isLoadingMoreRef.current
-      });
-      return;
-    }
-
-    try {
-      isLoadingMoreRef.current = true;
-      dispatch(setInfiniteScrollLoading(true));
-      console.log('Loading more jobs... Current page:', pagination.currentPage);
-      
-      const result = await loadMoreJobs();
-      
-      if (result && result.newJobs && result.newJobs.length > 0) {
-        console.log('Successfully loaded page:', result.pagination?.currentPage || 'unknown');
-        console.log('New jobs count:', result.newJobs.length);
-        console.log('Has more pages:', result.hasMore);
-        
-        dispatch(appendJobs({ 
-          jobs: result.newJobs, 
-          pagination: result.pagination || {
-            ...pagination, 
-            hasNextPage: result.hasMore,
-            totalJobs: result.totalJobs,
-            currentPage: result.pagination?.currentPage || pagination.currentPage + 1
-          }
-        }));
-      } else {
-        console.log('No more jobs to load or empty result');
-      }
-    } catch (error) {
-      console.error('Error loading more jobs:', error);
-      showToast('Error loading more jobs');
-    } finally {
-      // Always reset loading state
-      dispatch(setInfiniteScrollLoading(false));
-      isLoadingMoreRef.current = false;
-    }
-  }, [infiniteScroll.hasMore, infiniteScroll.isLoading, dispatch, loadMoreJobs, pagination, showToast]);
-
-  // NEW: Apply filters function
-  const handleApplyFilters = useCallback(() => {
-    dispatch(setSelectedCategory(pendingFilters.selectedCategory));
-    dispatch(setSelectedCompany(pendingFilters.selectedCompany));
-    dispatch(setSelectedExperience(pendingFilters.selectedExperience));
-    dispatch(setSelectedLocation(pendingFilters.selectedLocation));
-    dispatch(setSelectedType(pendingFilters.selectedType));
-    dispatch(setSelectedSalary(pendingFilters.selectedSalary));
-    
-    setInfiniteScrollInitialized(false);
-    isLoadingMoreRef.current = false;
-    
-    showToast('Filters applied successfully!');
-    
-    // Close sidebar on mobile after applying
-    if (isMobile) {
-      setIsSidebarOpen(false);
-    }
-  }, [dispatch, pendingFilters, isMobile, showToast]);
-
-  // NEW: Clear all filters function
-  const handleClearFilters = useCallback(() => {
-    setPendingFilters({
-      selectedCategory: [],
-      selectedCompany: [],
-      selectedExperience: [],
-      selectedLocation: [],
-      selectedType: [],
-      selectedSalary: []
-    });
-    
-    dispatch(clearFilters());
-    setLocalFilters({
-      searchInput: '',
-      locationSearchInput: ''
-    });
-    setInfiniteScrollInitialized(false);
-    isLoadingMoreRef.current = false;
-    
-    showToast('All filters cleared!');
-    
-    // Close sidebar on mobile after clearing
-    if (isMobile) {
-      setIsSidebarOpen(false);
-    }
-  }, [dispatch, isMobile, showToast]);
-
-  const toggleSidebar = useCallback(() => {
-    setIsSidebarOpen(prev => !prev);
-  }, []);
-
-  // Handle search input changes
-  const handleSearchInputChange = useCallback((value) => {
-    setLocalFilters(prev => ({
-      ...prev,
-      searchInput: value
-    }));
-  }, []);
-
-  const handleLocationInputChange = useCallback((value) => {
-    setLocalFilters(prev => ({
-      ...prev,
-      locationSearchInput: value
-    }));
-    
-    if (value.trim()) {
-      dispatch(setSelectedLocation([value.trim()]));
-    } else {
-      dispatch(setSelectedLocation([]));
-    }
-  }, [dispatch]);
-
-  // NEW: Handle pending filter changes
-  const handlePendingFilterChange = useCallback((filterType, value, isChecked) => {
-    setPendingFilters(prev => {
-      const current = prev[filterType] || [];
-      const updated = isChecked
-        ? [...current, value]
-        : current.filter(item => item !== value);
-      
-      return {
-        ...prev,
-        [filterType]: updated
-      };
-    });
-  }, []);
-
-  // Modal handlers
-  const handleViewDetails = useCallback((job) => {
-    setSelectedJob(job);
-    setIsModalOpen(true);
-  }, []);
-
-  const handleCloseModal = useCallback(() => {
-    setIsModalOpen(false);
-    setSelectedJob(null);
-  }, []);
-
-  const handleSaveFromModal = useCallback(async () => {
-    if (!selectedJob) return;
-    
-    try {
-      const result = await dispatch(saveJob({ 
-        jobId: selectedJob.id,
-        notes: '',
-        priority: 0
-      }));
-
-      if (result.meta.requestStatus === 'fulfilled') {
-        showToast("Job saved successfully!");
-      } else if (result.meta.requestStatus === 'rejected') {
-        const errorMessage = result.payload || "Failed to save job";
-        if (errorMessage.includes('already saved')) {
-          showToast("Job is already saved");
-        } else {
-          showToast(errorMessage);
-        }
-      }
-    } catch (error) {
-      console.error('Error saving job:', error);
-      showToast("Failed to save job");
-    }
-  }, [selectedJob, dispatch, showToast]);
-
-  const handleApplyFromModal = useCallback(() => {
-    if (!selectedJob) return;
-    
-    const applyUrl = selectedJob.applyUrl || selectedJob.apply_url || selectedJob.applicationUrl || selectedJob.application_url || selectedJob.url || selectedJob.link;
-    if (applyUrl) {
-      window.open(applyUrl, '_blank', 'noopener,noreferrer');
-    }
-  }, [selectedJob]);
-
-  if (!initialLoadComplete) {
-    return <div className="loading">Loading jobs...</div>;
-  }
-
-  if (loading && (!isMobile || infiniteScroll.allJobs.length === 0)) {
-    return <div className="loading">Loading jobs...</div>;
-  }
-  
-  if (error) return <div className="error">Error: {error}</div>;
-
-  // Static filter options
-  const experienceOptions = ['Fresher', 'Mid-level', 'Senior', '1 yr', '2 yrs', '3 yrs', '4 yrs', '5 yrs'];
-  const locationOptions = ['Remote', 'Se']}
