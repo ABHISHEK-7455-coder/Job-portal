@@ -8,7 +8,7 @@
 }
 .card {
   background-color: #aa5f5f;
-  border: 1px solid #ddd;
+  border: 2px solid #ddd;
   padding: 20px;
   border-radius: 8px;
   text-align: left;
@@ -18,7 +18,7 @@
   color: gray;
 }
 .card button {
-  margin-top: 10px;
+  margin-top: 15px;
   background: none;
   color: rgb(35, 38, 46);
   border: none;
@@ -27,7 +27,7 @@
 .more-jobs {
   grid-column: span 4;
   text-align: center;
-  margin-top: 21px;
+  margin-top: 25px;
 }
 .more-jobs button {
   background: rgb(3, 3, 3);
