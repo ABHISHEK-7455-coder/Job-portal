@@ -2,7 +2,7 @@
 .saved-jobs {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 40px;
+  margin-bottom: 45px;
 }
 /* .job-card {
   display: flex;
@@ -14,7 +14,7 @@
   border-radius: 6px;
 } */
 .job-cards p {
-  margin-top: 50px;
+  margin-top: 55px;
 }
 /* .apply-btn {
   background: #4caf50;
