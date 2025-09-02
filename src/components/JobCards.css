@@ -9,7 +9,7 @@
 .card {
   background-color: #aa5f5f;
   border: 2px solid #ddd;
-  padding: 20px;
+  padding: 25px;
   border-radius: 8px;
   text-align: left;
 }
@@ -18,7 +18,7 @@
   color: gray;
 }
 .card button {
-  margin-top: 15px;
+  margin-top: 20px;
   background: none;
   color: rgb(35, 38, 46);
   border: none;
