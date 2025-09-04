@@ -105,7 +105,7 @@
 
 .loading-text {
   color: rgba(255, 255, 255, 0.9);
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 500;
   animation: fadeInOut 2s ease-in-out infinite;
 }
