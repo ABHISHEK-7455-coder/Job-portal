@@ -96,7 +96,7 @@
   height: 15px;
   border-radius: 50%;
   background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%);
-  animation: bounce 1.4s ease-in-out infinite both;
+  animation: bounce 1.5s ease-in-out infinite both;
 }
 
 .spinner-dot:nth-child(1) { animation-delay: -0.32s; }
