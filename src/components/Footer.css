@@ -18,14 +18,14 @@
 
 .footer-logo {
   color: #10131d;
-  font-size: 24px;
+  font-size: 25px;
   font-weight: bold;
 }
 
 .footer-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 41px;
   flex: 1;
 }
 
