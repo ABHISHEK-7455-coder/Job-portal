@@ -2,7 +2,7 @@
 .saved-jobs {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 45px;
+  margin-bottom: 46px;
 }
 /* .job-card {
   display: flex;
@@ -10,7 +10,7 @@
   padding: 15px 20px;
   margin-bottom: 10px;
   background: #fff;
-  border: 1px solid #eee;
+  border: 2px solid #eee;
   border-radius: 6px;
 } */
 .job-cards p {
